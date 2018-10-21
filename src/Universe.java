@@ -1,3 +1,5 @@
+import Patterns.Pattern;
+
 import javax.swing.Timer;
 import java.awt.Canvas;
 import java.awt.Graphics;
@@ -102,6 +104,23 @@ class Universe extends Canvas implements ActionListener {
 
     public Cell getCell(int x, int y) {
         return tiles[y][x];
+    }
+
+    public void setPattern(Pattern pattern, Position offset) {
+        int[][] structure = pattern.getStructure();
+
+        for(int y = 0; y < structure.length; y++) {
+            for(int x = 0; x < structure[y].length; x++) {
+                if (structure[y][x] == Pattern.DEAD) {
+                    continue;
+                }
+
+                int posX = offset.getX() + x;
+                int posY = offset.getY() + y;
+
+                getCell(posX, posY).alive();
+            }
+        }
     }
 
     private void setSize() {
