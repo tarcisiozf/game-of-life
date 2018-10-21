@@ -1,7 +1,7 @@
 import javax.swing.JFrame;
 
 public class App {
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String args[]) {
         Universe universe = UniverseFactory.make();
 
         universe.getCell(Position.of(3, 2)).alive();
