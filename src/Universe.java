@@ -1,4 +1,3 @@
-class Universe extends Canvas {
 import javax.swing.Timer;
 import java.awt.Canvas;
 import java.awt.Graphics;
@@ -6,13 +5,16 @@ import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+class Universe extends Canvas implements ActionListener {
     public final static int NUM_TILES = 32;
     private Cell[][] tiles = new Cell[NUM_TILES][NUM_TILES];
     private Bound bound;
+    private Timer timer = new Timer(1000, this);
 
     Universe() {
         setSize();
         setBound();
+        timer.start();
     }
 
     public void paint(Graphics graphics) {
@@ -28,7 +30,7 @@ import java.awt.event.ActionEvent;
         }
     }
 
-    public void nextGeneration() {
+    private void nextGeneration() {
         for(int y = 0; y < NUM_TILES; y++) {
             for(int x = 0; x < NUM_TILES; x++) {
                 Cell cell = tiles[y][x];
@@ -104,5 +106,11 @@ import java.awt.event.ActionEvent;
 
     private void setBound() {
         bound = new Bound(new Position(0, 0), new Position(NUM_TILES, NUM_TILES));
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.nextGeneration();
+        repaint();
     }
 }
