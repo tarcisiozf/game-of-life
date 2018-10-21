@@ -3,7 +3,7 @@ import java.awt.Rectangle;
 public class Cell {
     public final static int DIMENSION = 15;
     private Position position;
-    private boolean alive;
+    private boolean alive = false;
 
     public Cell(Position position) {
         this.position = position;
