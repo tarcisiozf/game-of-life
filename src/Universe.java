@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 class Universe extends Canvas implements ActionListener {
     public final static int NUM_TILES = 32;
@@ -31,6 +33,9 @@ class Universe extends Canvas implements ActionListener {
     }
 
     private void nextGeneration() {
+        List<Cell> killList = new ArrayList<>();
+        List<Cell> aliveList = new ArrayList<>();
+
         for(int y = 0; y < NUM_TILES; y++) {
             for(int x = 0; x < NUM_TILES; x++) {
                 Cell cell = tiles[y][x];
@@ -40,11 +45,11 @@ class Universe extends Canvas implements ActionListener {
                 if (cell.isAlive()) {
                     //Any live cell with fewer than two live neighbors dies, as if by underpopulation.
                     if (numNeighbors < 2) {
-                        cell.kill();
+                        killList.add(cell);
                     }
                     //Any live cell with more than three live neighbors dies, as if by overpopulation.
                     else if (numNeighbors > 3) {
-                        cell.kill();
+                        killList.add(cell);
                     }
                     //Any live cell with two or three live neighbors lives on to the next generation.
                     else {
@@ -53,10 +58,18 @@ class Universe extends Canvas implements ActionListener {
                 } else {
                     //Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
                     if (numNeighbors == 3) {
-                        cell.alive();
+                        aliveList.add(cell);
                     }
                 }
             }
+        }
+
+        for(Cell cell : killList) {
+            cell.kill();
+        }
+
+        for (Cell cell : aliveList) {
+            cell.alive();
         }
     }
 
