@@ -9,7 +9,7 @@ class Universe extends Canvas implements ActionListener {
     public final static int NUM_TILES = 32;
     private Cell[][] tiles = new Cell[NUM_TILES][NUM_TILES];
     private Bound bound;
-    private Timer timer = new Timer(1000, this);
+    private Timer timer = new Timer(500, this);
 
     Universe() {
         setSize();
