@@ -1,6 +1,11 @@
-import java.awt.*;
-
 class Universe extends Canvas {
+import javax.swing.Timer;
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
     public final static int NUM_TILES = 32;
     private Cell[][] tiles = new Cell[NUM_TILES][NUM_TILES];
     private Bound bound;

@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Rectangle;
 
 public class Cell {
     public final static int DIMENSION = 15;
