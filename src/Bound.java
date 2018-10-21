@@ -11,6 +11,6 @@ public class Bound {
         return position.getX() >= upperLeft.getX()
             && position.getX() < bottomRight.getX()
             && position.getY() >= upperLeft.getY()
-            && position.getY() < upperLeft.getY();
+            && position.getY() < bottomRight.getY();
     }
 }
