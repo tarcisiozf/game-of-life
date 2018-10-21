@@ -102,7 +102,7 @@ class Universe extends Canvas implements ActionListener {
         return tiles[position.getY()][position.getX()];
     }
 
-    public Cell getCell(int x, int y) {
+    private Cell getCell(int x, int y) {
         return tiles[y][x];
     }
 
