@@ -42,19 +42,11 @@ class Universe extends Canvas implements ActionListener {
 
                 int numNeighbors = countNeighbors(cell.getPosition());
 
-                if (cell.isAlive()) {
-                    //Any live cell with fewer than two live neighbors dies, as if by underpopulation.
-                    if (numNeighbors < 2) {
-                        killList.add(cell);
-                    }
-                    //Any live cell with more than three live neighbors dies, as if by overpopulation.
-                    else if (numNeighbors > 3) {
-                        killList.add(cell);
-                    }
-                    //Any live cell with two or three live neighbors lives on to the next generation.
-                    else {
-                        continue;
-                    }
+                //Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+                //Any live cell with more than three live neighbors dies, as if by overpopulation.
+                //Any live cell with two or three live neighbors lives on to the next generation.
+                if (cell.isAlive() && (numNeighbors < 2 || numNeighbors > 3)) {
+                    killList.add(cell);
                 } else {
                     //Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
                     if (numNeighbors == 3) {
