@@ -93,6 +93,10 @@ import java.awt.event.ActionEvent;
         return tiles[position.getY()][position.getX()];
     }
 
+    public Cell getCell(int x, int y) {
+        return tiles[y][x];
+    }
+
     private void setSize() {
         int size = Universe.NUM_TILES * Cell.DIMENSION;
         super.setSize(size, size);
